@@ -22,15 +22,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Install Dart (required for proper dependency analysis)
-      - name: Setup Dart
-        uses: dart-lang/setup-dart@v1
+      # Setup Flutter (not just Dart)
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          sdk: stable
+          flutter-version: '3.19.0'  # Use your Flutter version
+          channel: 'stable'
 
-      # Get Dart dependencies (helps Semgrep understand your code better)
-      - name: Get Dart dependencies
-        run: dart pub get
+      # Get Flutter dependencies
+      - name: Get Flutter dependencies
+        run: flutter pub get
 
       # Install Semgrep
       - name: Install Semgrep
