@@ -2,7 +2,7 @@ name: Semgrep Security Scan
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   semgrep:
@@ -14,5 +14,7 @@ jobs:
       - name: Install Semgrep
         run: pip install semgrep
 
-      - name: Run Semgrep with Custom Rules
-        run: semgrep scan --config .semgrep/dart-rules.yml .
+      - name: Run Semgrep with Custom Rules (UPLOAD TO UI)
+        env:
+          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        run: semgrep ci --config .semgrep/dart-rules.yml
