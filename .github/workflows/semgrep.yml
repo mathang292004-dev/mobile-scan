@@ -26,5 +26,4 @@ jobs:
       - name: Run Semgrep CI Scan
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-        run: semgrep ci --config auto --verbose
-        
+        run: semgrep ci --verbose
