@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "269650450926",
+    "project_id": "emergex-e9909",
+    "storage_bucket": "emergex-e9909.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269650450926:android:667d9a5e388c71292816ff",
+        "android_client_info": {
+          "package_name": "com.example.emergex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArM6AiJHL-Z54WY3Kc1ykkOg_GrKEiPAI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

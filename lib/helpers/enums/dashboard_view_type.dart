@@ -1,0 +1,1 @@
+enum DashboardViewType { graph, normal }
