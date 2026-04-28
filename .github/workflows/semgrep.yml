@@ -14,7 +14,7 @@ jobs:
       - name: Install Semgrep
         run: pip install semgrep
 
-      - name: Run Semgrep with Custom Rules (UPLOAD TO UI)
+      - name: Run Semgrep CI (UI Mode)
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-        run: semgrep ci --config .semgrep/dart-rules.yml
+        run: semgrep ci
