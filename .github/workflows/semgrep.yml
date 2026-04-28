@@ -1,20 +1,43 @@
-name: Semgrep Security Scan
+name: Semgrep Security Scan (With Free UI Dashboard)
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "emergeX_dev"]
+  pull_request:
 
 jobs:
   semgrep:
+    name: Semgrep Scan - View Results in UI
     runs-on: ubuntu-latest
+    
+    # Required permissions for PR comments and UI integration
+    permissions:
+      contents: read
+      pull-requests: write
+      security-events: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # Install Dart (required for proper dependency analysis)
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      # Get Dart dependencies (helps Semgrep understand your code better)
+      - name: Get Dart dependencies
+        run: dart pub get
+
+      # Install Semgrep
       - name: Install Semgrep
         run: pip install semgrep
 
-      - name: Run Semgrep CI (UI Mode)
+      # Run Semgrep CI - This will upload results to the UI dashboard
+      - name: Run Semgrep CI
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
         run: semgrep ci
