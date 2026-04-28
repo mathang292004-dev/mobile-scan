@@ -21,26 +21,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Setup Flutter with newer version (Dart 3.8+)
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.27.0'  # Comes with Dart 3.6.0
-          channel: 'stable'
+      # NO Flutter setup needed!
+      # NO dart pub get needed!
+      # Semgrep scans source code directly
 
-      # Verify Dart version
-      - name: Check Dart version
-        run: dart --version
-
-      # Get Flutter dependencies
-      - name: Get Flutter dependencies
-        run: flutter pub get
-
-      # Install Semgrep
       - name: Install Semgrep
         run: pip install semgrep
 
-      # Run Semgrep CI
       - name: Run Semgrep CI
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
