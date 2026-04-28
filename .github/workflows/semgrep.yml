@@ -2,9 +2,9 @@ name: Semgrep Security Scan
 
 on:
   push:
-    branches: [ "main", "master", "emergeX_dev" ]
+    branches:
+      - main
   pull_request:
-  workflow_dispatch:
 
 jobs:
   semgrep:
@@ -23,8 +23,7 @@ jobs:
       - name: Install Semgrep
         run: pip install semgrep
 
-      - name: Run Semgrep Scan
+      - name: Run Semgrep CI Scan
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
         run: semgrep ci --config auto --verbose
-        
