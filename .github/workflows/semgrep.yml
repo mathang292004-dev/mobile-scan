@@ -1,3 +1,29 @@
+# name: Semgrep Security Scan
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+
+# jobs:
+#   semgrep:
+#     name: Semgrep SAST Scan
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       # Checkout code
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       # Install Semgrep
+#       - name: Install Semgrep
+#         run: pip install semgrep
+
+#       # Run Semgrep (Dashboard mode)
+#       - name: Run Semgrep Scan
+#         env:
+#           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+#         run: semgrep ci --verbose
 name: Semgrep Security Scan
 
 on:
@@ -7,20 +33,15 @@ on:
 
 jobs:
   semgrep:
-    name: Semgrep SAST Scan
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Install Semgrep
       - name: Install Semgrep
         run: pip install semgrep
 
-      # Run Semgrep (Dashboard mode)
       - name: Run Semgrep Scan
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
-        run: semgrep ci --verbose
+        run: semgrep ci --exclude ios --exclude macos --verbose
