@@ -2,8 +2,7 @@ name: Semgrep Security Scan
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
 
 jobs:
@@ -12,18 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
+      # Install Semgrep
       - name: Install Semgrep
         run: pip install semgrep
 
-      - name: Run Semgrep CI Scan
+      # Run Semgrep (Dashboard mode)
+      - name: Run Semgrep Scan
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
         run: semgrep ci --verbose
