@@ -10,7 +10,6 @@ jobs:
     name: Semgrep Scan - View Results in UI
     runs-on: ubuntu-latest
     
-    # Required permissions for PR comments and UI integration
     permissions:
       contents: read
       pull-requests: write
@@ -22,12 +21,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Setup Flutter (not just Dart)
+      # Setup Flutter with newer version (Dart 3.8+)
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.19.0'  # Use your Flutter version
+          flutter-version: '3.27.0'  # Comes with Dart 3.6.0
           channel: 'stable'
+
+      # Verify Dart version
+      - name: Check Dart version
+        run: dart --version
 
       # Get Flutter dependencies
       - name: Get Flutter dependencies
@@ -37,7 +40,7 @@ jobs:
       - name: Install Semgrep
         run: pip install semgrep
 
-      # Run Semgrep CI - This will upload results to the UI dashboard
+      # Run Semgrep CI
       - name: Run Semgrep CI
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
