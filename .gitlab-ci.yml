@@ -6,6 +6,7 @@ workflow:
 
 stages:
   - sonar
+  
 
 sonarqube-check:
   stage: sonar
