@@ -1,0 +1,12 @@
+rules:
+  - id: hardcoded-password
+    pattern: String $X = "$VALUE"
+    message: Hardcoded secret detected
+    severity: ERROR
+    languages: [dart]
+
+  - id: print-sensitive-data
+    pattern: print($X)
+    message: Avoid printing sensitive data
+    severity: WARNING
+    languages: [dart]
